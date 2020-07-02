@@ -1,12 +1,12 @@
 import React from "react";
 
-const trackText = ({ oldText, newText }) => {
-    return (
-        <div>
-            <p>{oldText}</p>
-            <p>{newText}</p>
-        </div>
-    );
+const TrackText = ({ prevText, text }) => {
+  return (
+    <div>
+      <p>{prevText}</p>
+      <p>{text}</p>
+    </div>
+  );
 };
 
-export default trackText;
+export default TrackText;

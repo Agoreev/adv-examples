@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./company.module.css";
 
-const company = ({ company, onCompanySelected }) => {
+const Company = ({ company, onCompanySelected }) => {
   return (
     <div className={classes.Company}>
       <img
@@ -13,4 +13,4 @@ const company = ({ company, onCompanySelected }) => {
   );
 };
 
-export default company;
+export default Company;

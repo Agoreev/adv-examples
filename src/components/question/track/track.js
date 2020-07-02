@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const track = ({ track, onTrackEnded }) => {
-    return (
-        <div>
-            <audio autoplay src={track} onEnded={onTrackEnded}></audio>
-        </div>
-    );
+const Track = ({ track, onTrackEnded }) => {
+  //must play on track prop changes
+  useEffect(() => {});
+  return (
+    <div>
+      <audio autoPlay src={track} onEnded={onTrackEnded}></audio>
+    </div>
+  );
 };
 
-export default track;
+export default Track;

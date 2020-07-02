@@ -1,7 +1,7 @@
 import React from "react";
 import Company from "./company";
 
-const companiesList = ({ companies, onCompanySelected }) => {
+const CompaniesList = ({ companies, onCompanySelected }) => {
   const list = Object.keys(companies).map((key) => {
     const company = companies[key];
     return (
@@ -15,4 +15,4 @@ const companiesList = ({ companies, onCompanySelected }) => {
   return <div className="companies-list">{list}</div>;
 };
 
-export default companiesList;
+export default CompaniesList;
