@@ -1,14 +1,17 @@
 import React from "react";
+import Button from "../../ui/button";
 
 const AnswersList = ({ answers, onAnswerSelected }) => {
-  const list = Object.keys(answers).map((key) => {
-    return (
-      <button key={key} onClick={() => onAnswerSelected(answers[key])}>
-        {answers[key].btnText}
-      </button>
-    );
-  });
-  return <div>{list}</div>;
+    const list = Object.keys(answers).map((key) => {
+        return (
+            <Button
+                key={key}
+                clicked={() => onAnswerSelected(answers[key])}
+                text={answers[key].btnText}
+            />
+        );
+    });
+    return <div>{list}</div>;
 };
 
 export default AnswersList;

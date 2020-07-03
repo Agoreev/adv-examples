@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TrackText from "./track-text";
 import Track from "./track";
 import AnswersList from "./answers-list";
+import classes from "./question.module.css";
 
 class Question extends Component {
     state = {
@@ -76,7 +77,7 @@ class Question extends Component {
         }
 
         return (
-            <div>
+            <div className={classes.Question}>
                 <TrackText prevText={prevText} text={text} />
                 <Track track={track} onTrackEnded={this.onTrackEnded} />
                 {answersList}

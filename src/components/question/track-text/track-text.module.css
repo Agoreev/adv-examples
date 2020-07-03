@@ -1,0 +1,11 @@
+.TrackText {}
+
+.PrevText {
+    font-size: 1.5rem;
+    color: #444;
+}
+
+.NewText {
+    font-size: 1.5rem;
+    font-weight: bold;
+}

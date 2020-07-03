@@ -1,0 +1,13 @@
+.CompanyLogo {
+    display: flex;
+    align-items: center;
+}
+
+.CompanyLogo img {
+    width: 80px;
+    height: 80px;
+}
+
+.CompanyLogo span {
+    font-size: 1.5rem;
+}

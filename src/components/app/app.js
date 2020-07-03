@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CompaniesList from "../companies-list";
 import Question from "../question";
+import CompanyLogo from "../company-logo";
 
 class App extends Component {
     state = {
@@ -83,7 +84,15 @@ class App extends Component {
 
         if (this.state.selectedCompanyId) {
             layout = (
-                <Question question={companies[selectedCompanyId].question} />
+                <div>
+                    <CompanyLogo
+                        image={companies[selectedCompanyId].image}
+                        title={companies[selectedCompanyId].title}
+                    />
+                    <Question
+                        question={companies[selectedCompanyId].question}
+                    />
+                </div>
             );
         }
         return <div className="App">{layout}</div>;
