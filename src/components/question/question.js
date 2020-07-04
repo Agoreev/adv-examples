@@ -12,7 +12,6 @@ class Question extends Component {
     track: this.props.question.track,
     answer: null,
     showAnswers: false,
-    finish: false,
   };
 
   onAnswerSelected = (answer) => {
@@ -53,12 +52,9 @@ class Question extends Component {
         });
       }
     } else {
-      //if question was playing then show answers
-      if (!this.state.finish) {
-        this.setState({
-          showAnswers: true,
-        });
-      }
+      this.setState({
+        showAnswers: true,
+      });
     }
   };
 
@@ -78,7 +74,6 @@ class Question extends Component {
         ),
         answer: null,
         texts: texts.slice(0, texts.length - 2),
-        finish: false,
       };
     });
   };
