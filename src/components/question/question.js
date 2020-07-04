@@ -5,85 +5,109 @@ import AnswersList from "./answers-list";
 import classes from "./question.module.css";
 
 class Question extends Component {
-    state = {
-        prevText: "",
-        text: this.props.question.text,
-        track: this.props.question.track,
-        question: this.props.question,
-        answer: null,
+  state = {
+    question: this.props.question,
+    questionsHistory: [],
+    texts: [this.props.question.text],
+    track: this.props.question.track,
+    answer: null,
+    showAnswers: false,
+    finish: false,
+  };
+
+  onAnswerSelected = (answer) => {
+    this.setState(({ texts, questionsHistory, question }) => {
+      return {
+        text: answer.text,
+        texts: [...texts, answer.text],
+        track: answer.track,
+        answer: answer,
         showAnswers: false,
-        finish: false,
-    };
+        questionsHistory: [...questionsHistory, question], //add current question to history array
+      };
+    });
+  };
 
-    onAnswerSelected = (answer) => {
-        this.setState(({ text }) => {
-            return {
-                text: answer.text,
-                prevText: text,
-                track: answer.track,
-                answer: answer,
-                showAnswers: false,
-            };
+  onTrackEnded = () => {
+    if (this.state.answer) {
+      // if answer was playing than after answer it must be a question or final answer from server
+      if (this.state.answer.question) {
+        //if current answer has another question
+        this.setState(({ texts, answer }) => {
+          return {
+            question: answer.question,
+            texts: [...texts, answer.question.text],
+            track: answer.question.track,
+            answer: null,
+          };
         });
-    };
-
-    onTrackEnded = () => {
-        if (this.state.answer) {
-            // if answer was playing than after answer it must be a question or final answer from server
-            if (this.state.answer.question) {
-                //if current answer has another question
-                this.setState(({ text, answer }) => {
-                    return {
-                        question: answer.question,
-                        prevText: text,
-                        text: answer.question.text,
-                        track: answer.question.track,
-                        answer: null,
-                    };
-                });
-            } else {
-                // if current answer has no other questions it must have final answer from server
-                this.setState(({ text, answer }) => {
-                    return {
-                        prevText: text,
-                        text: answer.finalAnswer.text,
-                        track: answer.finalAnswer.track,
-                        answer: null,
-                        finish: true,
-                    };
-                });
-            }
-        } else {
-            //if question was playing then show answers
-            if (!this.state.finish) {
-                this.setState({
-                    showAnswers: true,
-                });
-            }
-        }
-    };
-
-    render() {
-        const { question, track, text, prevText, showAnswers } = this.state;
-
-        let answersList = null;
-        if (showAnswers) {
-            answersList = (
-                <AnswersList
-                    answers={question.answers}
-                    onAnswerSelected={this.onAnswerSelected}
-                />
-            );
-        }
-
-        return (
-            <div className={classes.Question}>
-                <TrackText prevText={prevText} text={text} />
-                <Track track={track} onTrackEnded={this.onTrackEnded} />
-                {answersList}
-            </div>
-        );
+      } else {
+        // if current answer has no other questions it must have final answer from server
+        this.setState(({ texts, answer }) => {
+          return {
+            texts: [...texts, answer.finalAnswer.text],
+            track: answer.finalAnswer.track,
+            answer: null,
+            finish: true,
+          };
+        });
+      }
+    } else {
+      //if question was playing then show answers
+      if (!this.state.finish) {
+        this.setState({
+          showAnswers: true,
+        });
+      }
     }
+  };
+
+  onBackClicked = () => {
+    if (this.state.questionsHistory.length === 0) {
+      this.props.onExitFromQuestion();
+      return;
+    }
+
+    this.setState(({ texts, questionsHistory }) => {
+      return {
+        question: questionsHistory[questionsHistory.length - 1],
+        track: questionsHistory[questionsHistory.length - 1].track,
+        questionsHistory: questionsHistory.slice(
+          0,
+          questionsHistory.length - 1
+        ),
+        answer: null,
+        texts: texts.slice(0, texts.length - 2),
+        finish: false,
+      };
+    });
+  };
+
+  render() {
+    const { question, track, texts, showAnswers } = this.state;
+
+    let answersList = null;
+    if (showAnswers) {
+      answersList = (
+        <AnswersList
+          answers={question.answers}
+          onAnswerSelected={this.onAnswerSelected}
+          onBackClicked={this.onBackClicked}
+        />
+      );
+    }
+
+    return (
+      <div className={classes.Question}>
+        <TrackText
+          prevText={texts[texts.length - 2]}
+          text={texts[texts.length - 1]}
+        />
+        <Track track={track} onTrackEnded={this.onTrackEnded} />
+        {answersList}
+      </div>
+    );
+  }
 }
 
 export default Question;
