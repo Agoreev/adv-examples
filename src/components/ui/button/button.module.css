@@ -1,9 +1,29 @@
 .Button {
-    border: 1px solid rgb(1, 162, 255);
-    border-radius: 5px;
-    color: rgb(1, 162, 255);
-    width: 200px;
-    padding: 15px 0;
-    background-color: transparent;
-    margin-right: 20px;
+  border-radius: 5px;
+  width: 200px;
+  padding: 15px 0;
+  background-color: transparent;
+  margin: 20px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.Normal {
+  border: 1px solid rgb(1, 162, 255);
+  color: rgb(1, 162, 255);
+}
+
+.Normal:hover {
+  background-color: rgb(1, 162, 255);
+  color: white;
+}
+
+.Back {
+  color: rgb(255, 175, 1);
+  border: 1px solid rgb(255, 175, 1);
+}
+
+.Back:hover {
+  background-color: rgb(255, 175, 1);
+  color: white;
 }

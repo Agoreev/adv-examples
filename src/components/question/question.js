@@ -43,12 +43,12 @@ class Question extends Component {
         });
       } else {
         // if current answer has no other questions it must have final answer from server
-        this.setState(({ texts, answer }) => {
+        this.setState(({ texts, answer, questionsHistory }) => {
           return {
             texts: [...texts, answer.finalAnswer.text],
             track: answer.finalAnswer.track,
             answer: null,
-            finish: true,
+            question: null,
           };
         });
       }
@@ -90,7 +90,7 @@ class Question extends Component {
     if (showAnswers) {
       answersList = (
         <AnswersList
-          answers={question.answers}
+          answers={question ? question.answers : null}
           onAnswerSelected={this.onAnswerSelected}
           onBackClicked={this.onBackClicked}
         />

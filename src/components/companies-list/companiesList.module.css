@@ -1,5 +1,11 @@
 .CompaniesList {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.Header {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
 }

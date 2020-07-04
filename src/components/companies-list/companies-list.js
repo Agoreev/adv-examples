@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Company from "./company";
 import classes from "./companiesList.module.css";
 
@@ -14,10 +14,10 @@ const CompaniesList = ({ companies, onCompanySelected }) => {
     );
   });
   return (
-    <div className={classes.CompaniesList}>
-      <p>Select sample</p>
-      {list}
-    </div>
+    <Fragment>
+      <p className={classes.Header}>Select sample</p>
+      <div className={classes.CompaniesList}>{list}</div>
+    </Fragment>
   );
 };
 
