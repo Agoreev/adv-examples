@@ -1,16 +1,26 @@
-import React from "react";
+import React, { Component } from "react";
 import classes from "./track-text.module.css";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-const TrackText = ({ prevText, text }) => {
-  const prevP = prevText ? (
-    <p className={classes.PrevText}>- {prevText}</p>
-  ) : null;
-  return (
-    <div className={classes.TrackText}>
-      {prevP}
-      <p className={classes.NewText}>- {text}</p>
-    </div>
-  );
-};
+class TrackText extends Component {
+  render() {
+    const { texts } = this.props;
+    const textsList = texts.slice(-2).map((text) => {
+      return (
+        <CSSTransition key={text} timeout={1000} classNames="fade-slide-up">
+          <li className={classes.TextItem}>- {text}</li>
+        </CSSTransition>
+      );
+    });
+
+    return (
+      <div className={classes.TrackText}>
+        <ul className={classes.TextsList}>
+          <TransitionGroup>{textsList}</TransitionGroup>
+        </ul>
+      </div>
+    );
+  }
+}
 
 export default TrackText;

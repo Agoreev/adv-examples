@@ -1,14 +1,27 @@
 .TrackText {
   margin-bottom: 20px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 600px;
 }
 
-.PrevText {
+.TextsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.TextItem {
   font-size: 2rem;
+}
+
+.TextItem:first-child {
   color: #555;
 }
 
-.NewText {
-  font-size: 2rem;
+.TextItem:last-child {
   font-weight: bold;
   color: #333;
 }

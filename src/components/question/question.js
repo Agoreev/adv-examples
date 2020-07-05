@@ -84,13 +84,10 @@ class Question extends Component {
 
     return (
       <div className={classes.Question}>
-        <TrackText
-          prevText={texts[texts.length - 2]}
-          text={texts[texts.length - 1]}
-        />
+        <TrackText texts={texts} />
         <Track track={track} onTrackEnded={this.onTrackEnded} />
         <CSSTransition
-          classNames="fade"
+          classNames="fade-slide-down"
           timeout={800}
           mountOnEnter
           unmountOnExit

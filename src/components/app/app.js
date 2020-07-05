@@ -116,7 +116,7 @@ class App extends Component {
         <SwitchTransition mode="out-in">
           <CSSTransition
             key={this.state.selectedCompanyId}
-            classNames="fade-slide"
+            classNames="fade-slide-up"
             timeout={400}
           >
             {layout}
