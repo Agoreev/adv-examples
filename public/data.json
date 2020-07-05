@@ -1,0 +1,60 @@
+{
+  "companies": {
+    "starbucks": {
+      "id": "starbucks",
+      "title": "Starbucks",
+      "image": "image path",
+      "question": {
+        "text": "Interested in some help?",
+        "track": "/example.wav",
+        "answers": {
+          "interest": {
+            "btnText": "interest",
+            "track": "/example2.wav",
+            "text": "interest",
+            "question": {
+              "text": "Why?",
+              "track": "/example.wav",
+              "answers": {
+                "because": {
+                  "btnText": "Because",
+                  "track": "/example2.wav",
+                  "text": "Because",
+                  "finalAnswer": {
+                    "text": "123456",
+                    "track": "/example.wav"
+                  }
+                },
+                "one": {
+                  "btnText": "One",
+                  "track": "/example.wav",
+                  "text": "One"
+                }
+              }
+            }
+          },
+          "noInterest": {
+            "btnText": "No interest",
+            "track": "/example.wav",
+            "text": "No interest"
+          },
+          "silence": {
+            "btnText": "Silence",
+            "track": "/example.wav",
+            "text": "Silence"
+          },
+          "unclear": {
+            "btnText": "Unclear",
+            "track": "/example.wav",
+            "text": "Unclear"
+          }
+        }
+      }
+    },
+    "kfc": {
+      "id": "kfc",
+      "title": "KFC",
+      "image": ""
+    }
+  }
+}

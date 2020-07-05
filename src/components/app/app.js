@@ -67,6 +67,8 @@ class App extends Component {
     loading: false,
   };
 
+  componentDidMount() {}
+
   onCompanySelected = (companyId) => {
     this.setState({
       selectedCompanyId: companyId,
@@ -81,6 +83,11 @@ class App extends Component {
 
   render() {
     const { companies, selectedCompanyId } = this.state;
+
+    if (!companies) {
+      return <h2>Sorry, no companies found</h2>;
+    }
+
     let layout = (
       <CompaniesList
         companies={companies}

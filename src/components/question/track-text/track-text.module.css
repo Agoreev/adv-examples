@@ -1,11 +1,14 @@
-.TrackText {}
+.TrackText {
+  margin-bottom: 20px;
+}
 
 .PrevText {
-    font-size: 1.5rem;
-    color: #444;
+  font-size: 2rem;
+  color: #555;
 }
 
 .NewText {
-    font-size: 1.5rem;
-    font-weight: bold;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
 }

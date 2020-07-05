@@ -1,3 +1,11 @@
 .Track {
-    align-self: stretch;
+  align-self: stretch;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 601px) {
+  .Track {
+    align-self: auto;
+    width: 600px;
+  }
 }
