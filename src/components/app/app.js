@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import CompaniesList from "../companies-list";
 import Question from "../question";
 import CompanyLogo from "../company-logo";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
+import "./app.css";
 
 class App extends Component {
   state = {
@@ -109,7 +111,19 @@ class App extends Component {
         </div>
       );
     }
-    return <div className="App">{layout}</div>;
+    return (
+      <div className="App">
+        <SwitchTransition mode="out-in">
+          <CSSTransition
+            key={this.state.selectedCompanyId}
+            classNames="fade-slide"
+            timeout={400}
+          >
+            {layout}
+          </CSSTransition>
+        </SwitchTransition>
+      </div>
+    );
   }
 }
 

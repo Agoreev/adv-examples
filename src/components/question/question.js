@@ -3,6 +3,7 @@ import TrackText from "./track-text";
 import Track from "./track";
 import AnswersList from "./answers-list";
 import classes from "./question.module.css";
+import { CSSTransition } from "react-transition-group";
 
 class Question extends Component {
   state = {
@@ -81,17 +82,6 @@ class Question extends Component {
   render() {
     const { question, track, texts, showAnswers } = this.state;
 
-    let answersList = null;
-    if (showAnswers) {
-      answersList = (
-        <AnswersList
-          answers={question ? question.answers : null}
-          onAnswerSelected={this.onAnswerSelected}
-          onBackClicked={this.onBackClicked}
-        />
-      );
-    }
-
     return (
       <div className={classes.Question}>
         <TrackText
@@ -99,7 +89,19 @@ class Question extends Component {
           text={texts[texts.length - 1]}
         />
         <Track track={track} onTrackEnded={this.onTrackEnded} />
-        {answersList}
+        <CSSTransition
+          classNames="fade"
+          timeout={800}
+          mountOnEnter
+          unmountOnExit
+          in={showAnswers}
+        >
+          <AnswersList
+            answers={question ? question.answers : null}
+            onAnswerSelected={this.onAnswerSelected}
+            onBackClicked={this.onBackClicked}
+          />
+        </CSSTransition>
       </div>
     );
   }
